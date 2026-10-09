@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f5f7;
+  margin: 0;
+  padding: 24px;
+}
+
+.dashboard {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#statusMessage {
+  min-height: 1.2em;
+  color: #555;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.task span {
+  flex: 1;
+}
+
+.task.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
