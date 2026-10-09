@@ -4,6 +4,16 @@ const taskList = document.getElementById("taskList");
 
 const taskManager = new TaskManager();
 
+function handleToggle(taskId) {
+  taskManager.toggleTask(taskId);
+  renderTasks();
+}
+
+function handleDelete(taskId) {
+  taskManager.removeTask(taskId);
+  renderTasks();
+}
+
 function createTaskElement(task) {
   const taskElement = document.createElement("div");
   taskElement.classList.add("task");
@@ -19,6 +29,9 @@ function createTaskElement(task) {
 
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
+
+  toggleBtn.addEventListener("click", () => handleToggle(task.id));
+  deleteBtn.addEventListener("click", () => handleDelete(task.id));
 
   taskElement.appendChild(title);
   taskElement.appendChild(toggleBtn);
