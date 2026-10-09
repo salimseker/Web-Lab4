@@ -51,18 +51,23 @@ function renderTasks() {
 async function loadTasks() {
   statusMessage.textContent = "Loading tasks...";
 
-  const rawTasks = await fetchTasks();
+  try {
+    const rawTasks = await fetchTasks();
 
-  const json = JSON.stringify(rawTasks);
-  const parsedTasks = JSON.parse(json);
+    const json = JSON.stringify(rawTasks);
+    const parsedTasks = JSON.parse(json);
 
-  const tasks = parsedTasks.map(
-    ({ id, title, completed }) => new Task(id, title, completed)
-  );
+    const tasks = parsedTasks.map(
+      ({ id, title, completed }) => new Task(id, title, completed)
+    );
 
-  taskManager.setTasks(tasks);
-  renderTasks();
-  statusMessage.textContent = "";
+    taskManager.setTasks(tasks);
+    renderTasks();
+    statusMessage.textContent = "";
+  } catch (error) {
+    statusMessage.textContent = "Failed to load tasks. Please try again.";
+    console.error("Failed to load tasks:", error);
+  }
 }
 
 loadTasksBtn.addEventListener("click", loadTasks);
